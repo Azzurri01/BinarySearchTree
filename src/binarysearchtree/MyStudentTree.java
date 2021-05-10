@@ -48,13 +48,53 @@ public class MyStudentTree {
                             left.setData(value);
                             root.setLeft(left);
                         }
-        
+                      else if(value==root.getData())
+                      { 
+                          root.setCount(root.getCount()+1);
+                      }
         return root;
     }
     
-    public void delete()
+    public void delete(int value)
     {
+        root=delete(root, value);
+    }
     
+    private MyStudentTreeNode del(MyStudentTreeNode r, MyStudentTreeNode p)
+    {
+        if(r.getRight()!=null)
+        {
+            r.setRight(del(p, r.getRight()));
+            return p;
+        }
+            else
+            {
+                p.setData(r.getData());
+                r=r.getLeft();
+            }
+        return r;
+    }
+    
+    private MyStudentTreeNode delete(MyStudentTreeNode t, int value)
+    {
+        if(t==null)
+        {
+            return t;
+        }
+            else if(value<t.getData())
+            {
+                root.setLeft(delete(t.getLeft(), value));
+            }
+                else if(value>t.getData())
+                {
+                    root.setRight(delete(t.getRight(), value));
+                }
+                    else if(value==t.getData())
+                    {
+                        t.setLeft(del(t, t.getLeft()));
+                          
+                    }
+        return t;
     }
     
     public void search() 

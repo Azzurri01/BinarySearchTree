@@ -11,7 +11,7 @@ package binarysearchtree;
  * @author djohanne
  */
 public class MyStudentTreeNode {
-    private int data;
+    private int data,count;
     private MyStudentTreeNode left;
     private MyStudentTreeNode right;
     
@@ -34,6 +34,11 @@ public class MyStudentTreeNode {
        right=inRight;
    }
    
+   public void setCount(int i)
+   {
+       count=i;
+   }
+   
    public int getData()
    {
        return data;
@@ -47,6 +52,11 @@ public class MyStudentTreeNode {
    public MyStudentTreeNode getRight()
    {
        return right;
+   }
+   
+   public int getCount()
+   {
+       return count;
    }
    
    @Override
