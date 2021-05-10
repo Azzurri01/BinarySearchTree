@@ -18,11 +18,11 @@ public class BinarySearchTree {
     public static void main(String[] args) {
         MyStudentTree bst = new MyStudentTree();
         
-        bst.insert(5);
-        bst.insert(10);
-        bst.insert(2);
-        bst.insert(1);
-        bst.insert(12);
+        bst.insert("Dimitri");
+        bst.insert("Fowzia");
+        bst.insert("Nuriyat");
+        bst.insert("Naqeeb");
+        bst.insert("Niyal");
     }
     
 }

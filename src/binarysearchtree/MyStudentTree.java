@@ -20,44 +20,41 @@ public class MyStudentTree {
         root=null;
     }
     
-    public void insert(int value)
+    public void insert(String nm)
     {
-        root=insert(root, value);
+        root=insert(root, nm);
     }
     
-    public MyStudentTreeNode insert(MyStudentTreeNode root, int value)
+    public MyStudentTreeNode insert(MyStudentTreeNode root, String nm)
     {
         if(root==null)
         {
             root=new MyStudentTreeNode();
-            root.setData(value);
+            root.setName(nm);
             root.setLeft(null);
             root.setRight(null);  
         }
         
-            else if(value>root.getData())
+           else if(nm.compareTo(root.getName())<0)
             {
-                //right = new MyStudentTreeNode();
-                //right.setData(value);
-                //root.setRight(right);
-                insert(root.getLeft(), value);
+                MyStudentTreeNode leftTree = insert(root.getLeft(), nm);
+                root.setLeft(leftTree);
             }
-                      else if(value<root.getData())
+                      else if(nm.compareTo(root.getName())>0)
                         {
-                            left = new MyStudentTreeNode();
-                            left.setData(value);
-                            root.setLeft(left);
+                              MyStudentTreeNode rightTree = insert(root.getRight(), nm);
+                              root.setRight(rightTree);
                         }
-                      else if(value==root.getData())
+                      /*else if(nm==root.getData())
                       { 
                           root.setCount(root.getCount()+1);
-                      }
+                      }*/
         return root;
     }
     
-    public void delete(int value)
+   public void delete(String nm)
     {
-        root=delete(root, value);
+        root=delete(root, nm);
     }
     
     private MyStudentTreeNode del(MyStudentTreeNode r, MyStudentTreeNode p)
@@ -69,30 +66,29 @@ public class MyStudentTree {
         }
             else
             {
-                p.setData(r.getData());
+                p.setName(r.getName());
                 r=r.getLeft();
             }
         return r;
     }
     
-    private MyStudentTreeNode delete(MyStudentTreeNode t, int value)
+    private MyStudentTreeNode delete(MyStudentTreeNode t, String nm)
     {
         if(t==null)
         {
             return t;
         }
-            else if(value<t.getData())
+            else if(nm.compareTo(t.getName())<0)
             {
-                root.setLeft(delete(t.getLeft(), value));
+                root.setLeft(delete(t.getLeft(), nm));
             }
-                else if(value>t.getData())
+                else if(nm.compareTo(t.getName())>0)
                 {
-                    root.setRight(delete(t.getRight(), value));
+                    root.setRight(delete(t.getRight(), nm));
                 }
-                    else if(value==t.getData())
+                    else if(nm.equals(t.getName()))
                     {
-                        t.setLeft(del(t, t.getLeft()));
-                          
+                        t.setLeft(del(t, t.getLeft()));     
                     }
         return t;
     }
